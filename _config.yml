@@ -24,11 +24,11 @@ description: >- # this means to ignore newlines until "baseurl:"
   My Website
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://dncharlton.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
+twitter_username: dncharlton
 github_username:  dncharlton
 
 # Build settings
-theme: jekyll-dash
+theme: minima
 plugins:
   - jekyll-feed
 
@@ -51,29 +51,3 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-paginate: 5
-paginate_path: "/blog/page:num/"
-
-tag_permalink_style: pretty
-tag_page_layout: tag_page
-tag_page_dir: tag
-
-dash:
-  date_format: "%-d %b, %Y"
-
-  # disqus:
-  #   shortname: <your-discuss-shortname>
-
-  # generate social links in footer
-  # supported colors: green, red, orange, blue, cyan, pink, teal, yellow, indigo, purple
-  # social_links:
-  #   - url: https://twitter.com/bitbrain_
-  #     icon: twitter-square
-  #     color: cyan
-  #   - url: https://bitbrain.itch.io
-  #     icon: itch-io
-  #     color: red
-  #   - url: https://github.com/bitbrain
-  #     icon: github-square
-  #     color: purple
