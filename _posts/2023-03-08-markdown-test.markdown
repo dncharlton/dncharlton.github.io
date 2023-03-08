@@ -6,6 +6,6 @@ categories: test page
 ---
 
 # This is a test page
-| table | goes | here |
-| --- | --- | --- |
-| ha | haha | hahaha |
+| table | goes | here |  
+| --- | --- | --- |  
+| ha | haha | hahaha |  
