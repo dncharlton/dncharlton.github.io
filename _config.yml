@@ -28,7 +28,7 @@ twitter_username: dncharlton
 github_username:  dncharlton
 
 # Build settings
-theme: minima
+theme: jekyll-theme-primer
 plugins:
   - jekyll-feed
 
