@@ -1,7 +1,0 @@
----
-layout: page
-title: About
-permalink: /about/
----
-
-I am dan and this is a test ???
