@@ -1,5 +1,10 @@
-_site
+tmp
+*.rdb
+.env
 .sass-cache
+.DS_Store
+_site
 .jekyll-cache
-.jekyll-metadata
-vendor
+.git
+.vscode
+.obsidian

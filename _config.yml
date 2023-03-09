@@ -1,54 +1,93 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+site: Gesko
+title: Gesko
+greetings: Hi 👋
+description: >-
+  just a minimalist, personal blog
+lang: en-US
+timezone:  Europe/Rome
+repo: https://github.com/DavideBri/Gesko # site repo [optional]
+data-theme: dark # default theme "dark" | "light"
+discus-identifier: powex # replace with your disqus shortname
 
-title: dncharlton - RE/BE Blog
-email: dncharlton.dc@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  This is my website to blog my reverse engineering and binary exploitation adventure.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://dncharlton.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: dncharlton
-github_username:  dncharlton
+author:
+  name: gesko
+  bio: just a minimalist, personal blog
+  userpicture: 
+  username: # general username
+  github: # github username
+  twitter: # twitter username
+  email: your-email@email.com # email adress
 
-# Build settings
-theme: jekyll-theme-primer
+# Font Settings
+googlewebfonts: family=Play:wght@400;700&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900
+
+# URL settings
+url: "https://DavideBri.github.io" # Domain Name of host. [username].github.io for github pages
+baseurl: "/Gesko" # sub folder for jekyll site. only if jekyll site not in root of host. leave blank if not wishd. always add / in front.
+permalink: pretty
+
+# local
+# url: "http://localhost:4000" # 
+# baseurl: "" # 
+
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+
+exclude:
+  - .jekyll-cache
+  - .obsidian
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE.md
+  - README.md
+  - CONTRIBUTING.md
+  
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
 plugins:
-  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-relative-links
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+collections:
+  pages:
+    output: true
+    permalink: /:name
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:slug
+  
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+relative_links:
+  enabled:     true
+  collections: false
+
 

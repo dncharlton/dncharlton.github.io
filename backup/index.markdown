@@ -4,4 +4,4 @@
 
 layout: home
 ---
-[Markdown Test FIle](./_posts/test.markdown)
+[Markdown Test FIle]("/_posts/test.markdown")
