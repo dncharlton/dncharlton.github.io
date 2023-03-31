@@ -9,7 +9,7 @@ tags:
 ## The plan for my journey
 This is the plan I have in place for studying for Reverse Engineering and Binary Exploitation.
 
-I am enamoured by the site [pwnable.kr](pwnable.kr/) however with my limited knowledge I foundd these challenges to more challenging then they initially appeared, the first challenge `fd` was simple enough as a simple stdin exploit. However I soon found myself at the second challenge, `collision`. 
+I am enamoured by the site [pwnable.kr](pwnable.kr/) however with my limited knowledge I found these challenges to more challenging then they initially appeared, the first challenge `fd` was simple enough as a simple stdin exploit. However I soon found myself at the second challenge, `collision`. 
 
 This is when I know that I needed to expand my knowledge of x86 Assembly and Debugging, Decompilation and Reverse Engineering further.
 

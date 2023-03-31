@@ -11,7 +11,7 @@ tags:
 #### Dissassembly:
 - Cutter - https://cutter.re/  
 
-This is still very new, however it is extremely visually appealing which I find stimulates me to use this software to learn more often. Cutter does use the ghidra decompiler, however I moreso see this as a replacement for IDA.
+This is still very new, however it is extremely visually appealing which I find stimulates me to use this software to learn more often. Cutter does use the `ghidra` decompiler, however I moreso see this as a replacement for IDA.
 
 
 - IDA Free - https://hex-rays.com/ida-free/  
@@ -38,11 +38,11 @@ I tried many different Hex Editors however I found many of them to be clunky, ou
 
 I would have liked to use `010 Hex Editor` as it seems to be the leading fully featured hex editor on the market, however I could not currently justify the cost.
 
-I was stumped, nothing fit my needs and I found myself having to compromise to use one of these editors, until I stumbled upon a beatiful piece of software..... 
+I was stumped, nothing fit my needs and I found myself having to compromise to use one of these editors, until I stumbled upon a beautiful piece of software..... 
 
 - ImHex - https://github.com/WerWolv/ImHex  
 
-ImHex looks great (in my opinion), and has the following features; Pattern Matching, Regex and String searching, Data Inspectors, Bookmarks, Data Analyzers, Yara Rules, Rudimentary disassembler, File Hashing, Great Hex Viewer, and best of all, I toggle all these features to be displayed or not, move them to my desired location with tabs!
+ImHex looks great (in my opinion), and has the following features; Pattern Matching, Regex and String searching, Data Inspectors, Bookmarks, Data Analyzers, YARA Rules, Rudimentary disassembler, File Hashing, Great Hex Viewer, and best of all, I toggle all these features to be displayed or not, move them to my desired location with tabs!
 
 ![ImHex Example Image](/assets/ImHex_Example.png)
 
