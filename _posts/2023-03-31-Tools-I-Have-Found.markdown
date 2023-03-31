@@ -37,7 +37,7 @@ I was stumped, nothing fit my needs and I found myself having to compromise to u
 - ImHex - https://github.com/WerWolv/ImHex
 ImHex looks great (in my opinion), and has the following features; Pattern Matching, Regex and String searching, Data Inspectors, Bookmarks, Data Analyzers, Yara Rules, Rudimentary disassembler, File Hashing, Great Hex Viewer, and best of all, I toggle all these features to be displayed or not, move them to my desired location with tabs!
 
-![](../_images/ImHex_Example.png)
+![ImHex Example Image](/assets/ImHex_Example.png)
 
 #### Compilers:
 - FASM - https://flatassembler.net/
