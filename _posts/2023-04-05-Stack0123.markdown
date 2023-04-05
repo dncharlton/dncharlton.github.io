@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 ```
 
 We can see this main function disassembled through gdb:
-```x86asm
+```bash
 0x080483f4 <main+0>:    push   ebp
 0x080483f5 <main+1>:    mov    ebp,esp
 0x080483f7 <main+3>:    and    esp,0xfffffff0
