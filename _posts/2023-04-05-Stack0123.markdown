@@ -252,16 +252,7 @@ you have changed the 'modified' variable
 ```
 
 ## Stack 1
-
----
-layout: post
-title:  "Protostar Stack1"
-date:   2023-03-15 09:00:00 +1100
-categories: Journey
-tags: 
----
-
-However ineloquent, I simple brute forced this one.
+However ineloquent, I simply brute forced this one.
 
 Code:
 ```c
